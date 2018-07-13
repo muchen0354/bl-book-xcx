@@ -56,7 +56,6 @@ export default {
       // 显示头部loading样式
       wx.showNavigationBarLoading()
       const books = await get('/weapp/booklist', this.page)
-      console.log(books.booksList)
       if (books.booksList.length < this.page.size) {
         this.more = false
       }
@@ -66,7 +65,6 @@ export default {
         wx.stopPullDownRefresh()
       } else {
         this.books = this.books.concat(books.booksList)
-        console.log(this.books)
       }
       // 隐藏头部loading样式
       wx.hideNavigationBarLoading()

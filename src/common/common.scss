@@ -39,6 +39,15 @@ $color-theme: #ef4238;
 .p-right {
   float:right;
 }
+.clearfix{
+  &::after{
+    content:'';
+    clear:both;
+    display: block;
+    visibility: hidden;
+    height: 0;
+  }
+}
 .oneline {
   text-overflow: ellipsis;
   overflow: hidden;
@@ -52,3 +61,19 @@ $color-theme: #ef4238;
   overflow: hidden;
 }
 
+// @font-face {
+//   font-family: 'iconfont';
+//   src: url('iconfont.eot');
+//   src: url('iconfont.eot?#iefix') format('embedded-opentype'),
+//   url('iconfont.woff') format('woff'),
+//   url('iconfont.ttf') format('truetype'),
+//   url('iconfont.svg#iconfont') format('svg');
+// }
+
+// .iconfont{
+//   font-family:"iconfont" !important;
+//   font-size:16px;font-style:normal;
+//   -webkit-font-smoothing: antialiased;
+//   -webkit-text-stroke-width: 0.2px;
+//   -moz-osx-font-smoothing: grayscale;
+// }

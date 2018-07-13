@@ -3,21 +3,25 @@
 DROP TABLE IF EXISTS `books`;
 
 CREATE TABLE `books` (
-`id` int(11) NOT NULL AUTO_INCREMENT,
-`isbn` varchar(20) NOT NULL,
-`openid` varchar(100) NOT NULL,
-`title` varchar(100) NOT NULL,
-`image` varchar(100) NOT NULL,
-`alt` varchar(100) NOT NULL,
-`publisher` varchar(100) NOT NULL,
-`summary` varchar(1000) NOT NULL,
-`price` varchar(100) DEFAULT NULL,
-`rate` float DEFAULT NULL,
-`tags` varchar(100) DEFAULT NULL,
-`author` varchar(100) DEFAULT NULL,
-`count` int(11) NOT NULL DEFAULT '0',
-PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `isbn` varchar(20) NOT NULL,
+  `openid` varchar(100) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `image` varchar(100) NOT NULL,
+  `alt` varchar(100) NOT NULL,
+  `publisher` varchar(100) NOT NULL,
+  `summary` varchar(1000) NOT NULL,
+  `price` varchar(100) DEFAULT NULL,
+  `rate` varchar(200) DEFAULT NULL,
+  `tags` varchar(100) DEFAULT NULL,
+  `author` varchar(100) DEFAULT NULL,
+  `count` int(11) NOT NULL DEFAULT '0',
+  `pubdate` varchar(100) DEFAULT NULL,
+  `author_intro` varchar(1000) DEFAULT NULL,
+  `catalog` varchar(10000) DEFAULT NULL,
+  `subtitle` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `comments`;
 

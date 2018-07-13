@@ -39,5 +39,8 @@ router.get('/booklist', controllers.booklist)
 router.get('/getBookDetail', controllers.getBookDetail)
 // GET 用于获取点击量最多的图书
 router.get('/top', controllers.top)
-
+// POST 用于保存用户评论
+router.post('/addComment',controllers.addComment)
+// GET 用于获取用户的评论
+router.get('/getComments',controllers.getComments)
 module.exports = router

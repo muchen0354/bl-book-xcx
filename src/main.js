@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App'
 
 import './common/common.scss'
-import '../static/font_738819_pfdfmkwtmqr/iconfont.css'
+import '@/common/font/iconfont.css'
 
 Vue.config.productionTip = false
 App.mpType = 'app'
@@ -18,7 +18,7 @@ export default {
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#ef4238',
-      navigationBarTitleText: 'WeChat',
+      navigationBarTitleText: '暴龙图书',
       navigationBarTextStyle: 'black'
     },
     tabBar: {

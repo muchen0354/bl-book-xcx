@@ -3,17 +3,9 @@
    <div class="info-top">
     <div class="info-base">
       <img class="info-img" mode="aspectFit" :src="info.image" >
-      <!-- <div class="info-text">
-        <p class="title">{{info.title}}</p>
-        <p class="author">作者:{{info.author}}</p>
-        <p class="publisher">出版社:{{info.publisher}}</p>
-        <p class="pubdate">出版时间:{{info.pubdate}}</p>
-        <p class="price">价格:{{info.price}}</p>
-        <span class="tags" v-for="(tag,index) in tags" :key="index">{{tag}}</span>
-      </div> -->
     </div>
     <div class="mask"></div>
-    <img class="info-background"  :src="info.image">
+    <div class="info-background"  :style="{backgroundColor: bgColor}"></div>
    </div>
    <div class="info-intro">
      <div class="title">{{info.title}}</div>
@@ -27,7 +19,7 @@
        <p class="rate-item raters">{{numRaters}}人</p>
      </div>
      <div class="wangtoread">
-       <span class="want1">想读</span>
+       <span class="want1" @click='bgColor'>想读</span>
        <span class="want2">在读</span>
        <span class="want3">读过</span>
      </div>
@@ -38,37 +30,49 @@
      <span class="icon iconfont p-right">&#xe8f1;</span>
      <span class="price p-right">￥{{info.price}}</span>
    </div>
-   <div class="info-summary">
-       <span>简介</span>
-       <span>{{info.summary}}</span>
+   <div class="info-buy" style="margin-bottom:10px;">
+     <img :src="userinfo.img" style="width:20px;height:20px;border-radius:50%;vertical-align:middle;margin-right:5px;" mode="aspectFit"/>
+     <span>{{userinfo.name}}</span>
    </div>
-   <div class="info-author">
-       <span>作者</span>
-       <span>{{info.author_intro}}</span>
-   </div>
-   <div class="info-catalog">
-       <span>目录</span>
-       <span v-html="info.catalog"></span>
-   </div>
+   <Model :text='summary'></Model>
+   <Model :text='author_intro'></Model>
+   <Model :text='catalog'></Model>
  </div>
 </template>
 
 <script>
-import Card from '@/components/Card'
 import Rate from '@/components/Rate'
+import Model from '@/components/Model'
 export default {
   props: ['info'],
   components: {
-    Card,
-    Rate
+    Rate,
+    Model
+  },
+  data () {
+    return {
+      colors: ['#f2efe6', '#d699ba', '#e0b3df', '#606968', '#a35568'],
+      active: false
+    }
+  },
+  methods: {
+    show () {
+      this.active = !this.active
+      console.log(this.info.catalog)
+    }
   },
   computed: {
+    userinfo() {
+      return this.info.user_info || {}
+    },
     tags () {
       if(this.info.tags){
         return this.info.tags.split(',').splice(0,3)
       }
-      return this.info.tags
     },
+    catalog(){return this.info.catalog || {}},
+    summary(){return this.info.summary || {}},
+    author_intro(){return this.info.author_intro || {}},
     rate () {
       if(this.info.rate){
         return JSON.parse(this.info.rate).average
@@ -78,10 +82,11 @@ export default {
       if(this.info.rate){
         return JSON.parse(this.info.rate).numRaters
       }
+    },
+    bgColor () {
+      const select = Math.floor(Math.random()*5)
+      return this.colors[select]
     }
-  },
-  mounted () {
-
   }
 }
 </script>
@@ -137,10 +142,10 @@ export default {
       }
       .info-background{
         position:absolute;
-        filter:blur(25px);
+        top: 0;
+        left: 0;
         width: 150%;
         height: 700rpx;
-        top: -20px;
       }
     }
     .info-intro{
@@ -220,6 +225,10 @@ export default {
     .info-buy{
       padding: 10px 20px;
       font-size: 14px;
+      border-bottom: 1px solid #eee;
+      &:active{
+        background-color: #ccc;
+      }
       span{
         vertical-align: bottom;
       }
@@ -230,24 +239,8 @@ export default {
         color: #ef4238
       }
     }
-    .info-summary,.info-author,.info-catalog{
-        font-size: 12px;
-        padding: 20px;
-        padding-bottom: 0;
-        span:nth-child(1){
-          color: #999;
-          display: block;
-          margin-bottom: 4px;
-        }
-        span:nth-child(2){
-          color: #666;
-          display: block;
-          margin-bottom: 4px;
-          display: -webkit-box;
-          -webkit-box-orient: vertical;
-          -webkit-line-clamp: 3;
-          overflow: hidden;
-        }
-      }
+
+
+
   }
 </style>

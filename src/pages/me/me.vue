@@ -5,6 +5,7 @@
       <p>{{userinfo.nickName}}</p>
     </div>
     <YearProgress></YearProgress>
+    <button  @tap='scan' class='btn'>查看二维码</button>
     <button v-if='userinfo.openId' @tap='scanBook' class='btn'>添加图书</button>
     <button v-else open-type="getUserInfo" lang="zh_CN" class='btn' @getuserinfo="doLogin">点击登录</button>
   </div>
@@ -41,8 +42,9 @@ export default {
         isbn,
         openid: this.userinfo.openId
       })
-      if (res.code === 200 && res.data.title) {
-        showSuccess('添加成功', `${res.data.title}添加成功`)
+      console.log(res)
+      if (res.msg === 'success') {
+        showSuccess('添加成功', `${res.title}添加成功`)
       }
     },
     // 扫二维码获取图书信息
@@ -51,6 +53,13 @@ export default {
         success: (res) => {
           console.log(res)
           this.addBook(res.result)
+        }
+      })
+    },
+    scan () {
+      wx.scanCode({
+        success: (res) => {
+          console.log(res)
         }
       })
     },
